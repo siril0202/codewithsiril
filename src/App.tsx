@@ -57,7 +57,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         <a href="#" className="flex items-center gap-3 group">
           <img 
-            src="/src/assets/images/logo.png" 
+            src="https://drive.google.com/file/d/1fvSmD9uZ1iI0CETd2YMx9HB0s3jz2Fnf/view" 
             alt="CodeWithSiril Logo" 
             className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
           />
@@ -365,7 +365,7 @@ You can choose to disable cookies through your browser settings; however, some f
         {/* Background Image Overlay with animated pulse */}
         <div className="absolute inset-0 z-0 opacity-10 scale-105 pointer-events-none">
           <img 
-            src="/src/assets/images/cover.png" 
+            src="https://drive.google.com/file/d/1T4aQaEp7iKAQGMIZdsSOBSTZ3IK7caLs/view" 
             alt="Background" 
             className="w-full h-full object-cover grayscale opacity-20 animate-pulse-slow"
             referrerPolicy="no-referrer"

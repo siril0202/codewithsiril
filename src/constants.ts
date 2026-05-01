@@ -107,9 +107,15 @@ export const BENEFITS = [
 
 export const PORTFOLIO = [
   {
+    title: 'Cloud POS System',
+    category: 'POS & Inventory',
+    image: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    link: '#',
+  },
+  {
     title: 'Hostel Management System',
     category: 'Management Software',
-    image: 'https://images.unsplash.com/photo-1555854817-5b2260d15d49?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     link: '#',
   },
   {
@@ -131,15 +137,9 @@ export const PORTFOLIO = [
     link: '#',
   },
   {
-    title: 'Cloud POS System',
-    category: 'POS & Inventory',
-    image: 'https://images.unsplash.com/photo-1556742049-02e4d58800e2?auto=format&fit=crop&q=80&w=800',
-    link: '#',
-  },
-  {
     title: 'Secure Barcode Generator',
     category: 'Utility Software',
-    image: 'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1722900879089-221a411fc7c6?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     link: '#',
   },
   {
