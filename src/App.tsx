@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+// Add this import at the top with your other imports
+import logo from './assets/images/logo.png';
+import cover from './assets/images/cover.png';
 import { 
   Menu, 
   X, 
@@ -49,88 +52,95 @@ const Navbar = () => {
   ];
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled || isOpen ? 'bg-white/95 backdrop-blur-xl py-4 shadow-xl' : 'bg-transparent py-6'
-      }`}
-    >
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        <a href="#" className="flex items-center gap-3 group">
-          <img 
-            src="https://drive.google.com/file/d/1fvSmD9uZ1iI0CETd2YMx9HB0s3jz2Fnf/view" 
-            alt="CodeWithSiril Logo" 
-            className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
-          />
-          <span className="font-bold text-2xl tracking-tight text-brand-dark">
-            Code<span className="text-brand-blue">With</span>Siril
-          </span>
-        </a>
+    <nav
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+    scrolled || isOpen
+      ? 'bg-white/95 backdrop-blur-xl py-4 shadow-xl'
+      : 'bg-transparent py-6'
+  }`}
+>
+  <div className="container mx-auto px-6 flex justify-between items-center">
+    <a href="#" className="flex items-center gap-3 group">
+      <img
+        src={logo}
+        alt="CodeWithSiril Logo"
+        className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
+      />
+      <span className="font-bold text-2xl tracking-tight text-brand-dark">
+        Code<span className="text-brand-blue">With</span>Siril
+      </span>
+    </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
+    {/* Desktop Nav */}
+    <div className="hidden md:flex items-center gap-10">
+      {navLinks.map((link) => (
+        <a
+          key={link.name}
+          href={link.href}
+          className="text-brand-slate hover:text-brand-blue font-medium transition-colors relative group"
+        >
+          {link.name}
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-blue transition-all group-hover:w-full" />
+        </a>
+      ))}
+
+      <a
+        href="#contact"
+        className="bg-brand-dark hover:bg-brand-blue text-white px-7 py-3 rounded-full font-bold transition-all shadow-lg hover:shadow-brand-blue/20 transform hover:-translate-y-0.5"
+      >
+        Start a Project
+      </a>
+    </div>
+
+    {/* Mobile Toggle */}
+    <button
+      className="md:hidden text-slate-900"
+      onClick={() => setIsOpen(!isOpen)}
+    >
+      {isOpen ? <X size={28} /> : <Menu size={28} />}
+    </button>
+  </div>
+
+  {/* Mobile Menu */}
+  <AnimatePresence>
+    {isOpen && (
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: 'auto' }}
+        exit={{ opacity: 0, height: 0 }}
+        className="md:hidden bg-white border-t border-slate-100 overflow-hidden"
+      >
+        <div className="flex flex-col p-8 gap-6">
+          {navLinks.map((link, idx) => (
+            <motion.a
+              key={link.name}
               href={link.href}
-              className="text-brand-slate hover:text-brand-blue font-medium transition-colors relative group"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              className="text-slate-800 font-bold text-2xl hover:text-brand-blue transition-colors flex items-center justify-between"
+              onClick={() => setIsOpen(false)}
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-blue transition-all group-hover:w-full" />
-            </a>
+              <ArrowRight size={20} className="text-slate-300" />
+            </motion.a>
           ))}
-          <a 
-            href="#contact" 
-            className="bg-brand-dark hover:bg-brand-blue text-white px-7 py-3 rounded-full font-bold transition-all shadow-lg hover:shadow-brand-blue/20 transform hover:-translate-y-0.5"
+
+          <motion.a
+            href="#contact"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="bg-brand-blue text-white px-8 py-5 rounded-2xl font-black text-center shadow-glow mt-4"
+            onClick={() => setIsOpen(false)}
           >
-            Start a Project
-          </a>
+            START A PROJECT
+          </motion.a>
         </div>
-
-        {/* Mobile Toggle */}
-        <button className="md:hidden text-slate-900" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-slate-100 overflow-hidden"
-          >
-            <div className="flex flex-col p-8 gap-6">
-              {navLinks.map((link, idx) => (
-                <motion.a 
-                  key={link.name} 
-                  href={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="text-slate-800 font-bold text-2xl hover:text-brand-blue transition-colors flex items-center justify-between"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                  <ArrowRight size={20} className="text-slate-300" />
-                </motion.a>
-              ))}
-              <motion.a 
-                href="#contact" 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="bg-brand-blue text-white px-8 py-5 rounded-2xl font-black text-center shadow-glow mt-4"
-                onClick={() => setIsOpen(false)}
-              >
-                START A PROJECT
-              </motion.a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</nav>
   );
 };
 
@@ -362,84 +372,90 @@ You can choose to disable cookies through your browser settings; however, some f
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden section-padding">
-        {/* Background Image Overlay with animated pulse */}
-        <div className="absolute inset-0 z-0 opacity-10 scale-105 pointer-events-none">
-          <img 
-            src="https://drive.google.com/file/d/1T4aQaEp7iKAQGMIZdsSOBSTZ3IK7caLs/view" 
-            alt="Background" 
-            className="w-full h-full object-cover grayscale opacity-20 animate-pulse-slow"
+  {/* Background Image Overlay */}
+  <div className="absolute inset-0 z-0 opacity-10 scale-105 pointer-events-none">
+    <img
+      src={cover}
+      alt="Background"
+      className="w-full h-full object-cover grayscale opacity-20 animate-pulse-slow"
+      referrerPolicy="no-referrer"
+    />
+  </div>
+
+  <div className="container mx-auto px-6 relative z-10">
+    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+      <div className="flex-1 text-center lg:text-left">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-black mb-8 tracking-[0.2em] uppercase border border-brand-blue/20"
+        >
+          <div className="w-2 h-2 bg-brand-blue rounded-full animate-ping" />
+          Innovating Since 2025
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.8 }}
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-brand-dark leading-[0.95] mb-8 pb-4"
+        >
+          Building <span className="text-gradient">Powerful</span> Digital Assets
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-xl md:text-2xl text-brand-slate mb-12 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light"
+        >
+          CodeWithSiril engineering premium scalable solutions for
+          forward-thinking businesses.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6"
+        >
+          <a
+            href="#contact"
+            className="w-full sm:w-auto bg-brand-blue hover:bg-brand-dark text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all shadow-glow flex items-center justify-center gap-3 hover:-translate-y-1"
+          >
+            Get Free Consultation
+            <ArrowRight size={22} strokeWidth={3} />
+          </a>
+
+          <a
+            href="portfolio/index.html"
+            className="w-full sm:w-auto glass hover:bg-white text-brand-dark px-10 py-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-center border border-slate-200"
+          >
+            View Case Studies
+          </a>
+        </motion.div>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
+        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
+        className="flex-1 relative w-full px-4 sm:px-0"
+      >
+        <div className="relative z-10 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-premium border-8 md:border-[12px] border-white ring-1 ring-slate-100 animate-float">
+          <img
+            src={cover}
+            alt="CodeWithSiril Solution"
+            className="w-full h-auto object-cover"
             referrerPolicy="no-referrer"
           />
         </div>
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
-            <div className="flex-1 text-center lg:text-left">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-black mb-8 tracking-[0.2em] uppercase border border-brand-blue/20"
-              >
-                <div className="w-2 h-2 bg-brand-blue rounded-full animate-ping" />
-                Innovating Since 2025
-              </motion.div>
-              <motion.h1 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.8 }}
-                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-brand-dark leading-[0.95] mb-8 pb-4"
-              >
-                Building <span className="text-gradient">Powerful</span> Digital Assets
-              </motion.h1>
-              <motion.p 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-xl md:text-2xl text-brand-slate mb-12 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light"
-              >
-                CodeWithSiril engineering premium scalable solutions for forward-thinking businesses.
-              </motion.p>
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6"
-              >
-                <a 
-                  href="#contact" 
-                  className="w-full sm:w-auto bg-brand-blue hover:bg-brand-dark text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all shadow-glow flex items-center justify-center gap-3 hover:-translate-y-1"
-                >
-                  Get Free Consultation <ArrowRight size={22} strokeWidth={3} />
-                </a>
-                <a 
-                  href="portfolio/index.html" 
-                  className="w-full sm:w-auto glass hover:bg-white text-brand-dark px-10 py-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-center border border-slate-200"
-                >
-                  View Case Studies
-                </a>
-              </motion.div>
-            </div>
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
-              className="flex-1 relative w-full px-4 sm:px-0"
-            >
-              <div className="relative z-10 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-premium border-8 md:border-[12px] border-white ring-1 ring-slate-100 animate-float">
-                <img 
-                  src="/src/assets/images/cover.png" 
-                  alt="CodeWithSiril Solution"
-                  className="w-full h-auto object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              {/* Decorative Blur Backgrounds */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-100/40 rounded-full blur-[100px] -z-10" />
-            </motion.div>
-          </div>
-        </div>
-      </section>
+
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-100/40 rounded-full blur-[100px] -z-10" />
+      </motion.div>
+    </div>
+  </div>
+</section>
 
       {/* About Section */}
       <section id="about" className="section-padding bg-slate-50 relative overflow-hidden">
@@ -874,62 +890,73 @@ You can choose to disable cookies through your browser settings; however, some f
 
       {/* Footer */}
       <footer className="py-16 bg-brand-dark border-t border-white/5 text-white">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-10 lg:gap-0">
-            {/* Left: Branding */}
-            <div className="flex flex-col items-center lg:items-start gap-4">
-              <div className="flex items-center gap-4">
-                <img 
-                  src="/src/assets/images/logo.png" 
-                  alt="CodeWithSiril" 
-                  className="w-10 h-10 object-contain"
-                />
-                <span className="font-bold text-2xl tracking-tighter text-white">
-                  Code<span className="text-brand-blue">With</span>Siril
-                </span>
-              </div>
-              <p className="text-slate-500 text-xs font-medium italic opacity-70">
-                © {new Date().getFullYear()} CodeWithSiril. Engineering Excellence.
-              </p>
-            </div>
-            
-            {/* Center: Tagline */}
-            <div className="flex justify-center">
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -3, backgroundColor: 'rgba(255,255,255,0.1)' }}
-                className="flex items-center gap-2.5 text-slate-400 text-[10px] font-black tracking-[0.25em] uppercase bg-white/5 px-8 py-3 rounded-full border border-white/10 cursor-default transition-colors duration-300"
-              >
-                Designed with <Heart size={12} className="text-rose-500 fill-rose-500 animate-pulse" /> and <Code size={12} className="text-brand-blue" />
-              </motion.div>
-            </div>
-            
-            {/* Right: Policy Links */}
-            <div className="flex flex-wrap justify-center lg:justify-end gap-8">
-              <button 
-                onClick={() => setActivePolicy(POLICIES.privacy)} 
-                className="text-slate-500 hover:text-brand-blue text-xs font-black tracking-widest uppercase transition-colors"
-              >
-                Privacy Policy
-              </button>
-              <button 
-                onClick={() => setActivePolicy(POLICIES.terms)} 
-                className="text-slate-500 hover:text-brand-blue text-xs font-black tracking-widest uppercase transition-colors"
-              >
-                Terms of Service
-              </button>
-              <button 
-                onClick={() => setActivePolicy(POLICIES.cookie)} 
-                className="text-slate-500 hover:text-brand-blue text-xs font-black tracking-widest uppercase transition-colors"
-              >
-                Cookie Policy
-              </button>
-            </div>
-          </div>
+  <div className="container mx-auto px-6">
+    <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-10 lg:gap-0">
+      {/* Left: Branding */}
+      <div className="flex flex-col items-center lg:items-start gap-4">
+        <div className="flex items-center gap-4">
+          <img
+            src={logo}
+            alt="CodeWithSiril"
+            className="w-10 h-10 object-contain"
+          />
+          <span className="font-bold text-2xl tracking-tighter text-white">
+            Code<span className="text-brand-blue">With</span>Siril
+          </span>
         </div>
-      </footer>
+
+        <p className="text-slate-500 text-xs font-medium italic opacity-70">
+          © {new Date().getFullYear()} CodeWithSiril. Engineering Excellence.
+        </p>
+      </div>
+
+      {/* Center: Tagline */}
+      <div className="flex justify-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          whileHover={{
+            y: -3,
+            backgroundColor: 'rgba(255,255,255,0.1)',
+          }}
+          className="flex items-center gap-2.5 text-slate-400 text-[10px] font-black tracking-[0.25em] uppercase bg-white/5 px-8 py-3 rounded-full border border-white/10 cursor-default transition-colors duration-300"
+        >
+          Designed with{' '}
+          <Heart
+            size={12}
+            className="text-rose-500 fill-rose-500 animate-pulse"
+          />{' '}
+          and <Code size={12} className="text-brand-blue" />
+        </motion.div>
+      </div>
+
+      {/* Right: Policy Links */}
+      <div className="flex flex-wrap justify-center lg:justify-end gap-8">
+        <button
+          onClick={() => setActivePolicy(POLICIES.privacy)}
+          className="text-slate-500 hover:text-brand-blue text-xs font-black tracking-widest uppercase transition-colors"
+        >
+          Privacy Policy
+        </button>
+
+        <button
+          onClick={() => setActivePolicy(POLICIES.terms)}
+          className="text-slate-500 hover:text-brand-blue text-xs font-black tracking-widest uppercase transition-colors"
+        >
+          Terms of Service
+        </button>
+
+        <button
+          onClick={() => setActivePolicy(POLICIES.cookie)}
+          className="text-slate-500 hover:text-brand-blue text-xs font-black tracking-widest uppercase transition-colors"
+        >
+          Cookie Policy
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
 
       {/* Policy Modal */}
       <PolicyModal 
