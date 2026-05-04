@@ -46,7 +46,7 @@ const Navbar = () => {
     { name: 'Home', href: '#' },
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: 'portfolio/index.html' },
+    { name: 'Portfolio', href: '#portfolio' },
     { name: 'Pricing', href: '#pricing' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -428,7 +428,7 @@ You can choose to disable cookies through your browser settings; however, some f
           </a>
 
           <a
-            href="portfolio/index.html"
+            href="#portfolio"
             className="w-full sm:w-auto glass hover:bg-white text-brand-dark px-10 py-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-center border border-slate-200"
           >
             View Case Studies
