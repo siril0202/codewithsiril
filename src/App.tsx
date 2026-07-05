@@ -222,16 +222,46 @@ const ProjectsModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           </div>
           <div className="flex-1 overflow-y-auto p-8 md:p-12 custom-scrollbar bg-white">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {PORTFOLIO.map((item, index) => (
-                <motion.div key={item.title} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.05 }} className="group relative rounded-[2rem] overflow-hidden shadow-premium aspect-[4/3] cursor-pointer">
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" referrerPolicy="no-referrer" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                    <span className="text-brand-blue font-black text-[10px] uppercase tracking-[0.3em] mb-2">{item.category}</span>
-                    <h4 className="text-white text-xl font-bold mb-4">{item.title}</h4>
-                    <div className="flex items-center gap-2 text-white/60 text-[10px] font-black tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">View Details <ArrowRight size={12} /></div>
-                  </div>
-                </motion.div>
-              ))}
+              {PORTFOLIO.map((item, index) => {
+                const hasLink = item.link && item.link !== '#';
+                const CardWrapper = (hasLink ? 'a' : 'div') as 'a' | 'div';
+                const wrapperProps = hasLink 
+                  ? { href: item.link, target: '_blank', rel: 'noopener noreferrer' } 
+                  : {};
+
+                return (
+                  <motion.div 
+                    key={item.title} 
+                    initial={{ opacity: 0, y: 20 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ delay: index * 0.05 }} 
+                    className="w-full h-full"
+                  >
+                    <CardWrapper
+                      {...wrapperProps}
+                      className={`block relative rounded-[2rem] overflow-hidden shadow-premium aspect-[4/3] group ${hasLink ? 'cursor-pointer' : 'cursor-default'}`}
+                    >
+                      <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" referrerPolicy="no-referrer" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                        <span className="text-brand-blue font-black text-[10px] uppercase tracking-[0.3em] mb-2">{item.category}</span>
+                        <h4 className="text-white text-xl font-bold mb-4">{item.title}</h4>
+                        <div className="flex items-center gap-4">
+                          {hasLink ? (
+                            <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-blue hover:bg-white text-white hover:text-brand-dark rounded-xl font-bold text-[10px] tracking-widest uppercase shadow-glow hover:scale-105 active:scale-95 duration-300 transition-all">
+                              Live Demo
+                              <ExternalLink size={12} strokeWidth={2.5} />
+                            </span>
+                          ) : (
+                            <div className="flex items-center gap-2 text-white/60 text-[10px] font-black tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                              View Details <ArrowRight size={12} />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </CardWrapper>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
           <div className="p-8 bg-slate-50/80 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -563,16 +593,47 @@ You can choose to disable cookies through your browser settings; however, some f
         <div className="container mx-auto px-6">
           <SectionHeader title="Exceptional Case Studies" subtitle="Explore our portfolio of high-impact digital transformations and enterprise-grade software solutions." />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
-            {PORTFOLIO.slice(0, 4).map((item, index) => (
-              <motion.div key={item.title} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="group relative rounded-[3rem] overflow-hidden shadow-premium aspect-[16/10] cursor-pointer">
-                <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" referrerPolicy="no-referrer" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent flex flex-col justify-end p-10 lg:p-14 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                  <span className="text-brand-blue font-black text-[10px] uppercase tracking-[0.3em] mb-3">{item.category}</span>
-                  <h3 className="text-white text-2xl lg:text-3xl font-bold mb-5">{item.title}</h3>
-                  <div className="flex items-center gap-2 text-white/60 text-xs font-black tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">Discover Case Study <ArrowRight size={16} strokeWidth={3} /></div>
-                </div>
-              </motion.div>
-            ))}
+            {PORTFOLIO.slice(0, 6).map((item, index) => {
+              const hasLink = item.link && item.link !== '#';
+              const CardWrapper = (hasLink ? 'a' : 'div') as 'a' | 'div';
+              const wrapperProps = hasLink 
+                ? { href: item.link, target: '_blank', rel: 'noopener noreferrer' } 
+                : {};
+
+              return (
+                <motion.div 
+                  key={item.title} 
+                  initial={{ opacity: 0, scale: 0.95 }} 
+                  whileInView={{ opacity: 1, scale: 1 }} 
+                  viewport={{ once: true }} 
+                  transition={{ delay: index * 0.1 }}
+                  className="w-full h-full"
+                >
+                  <CardWrapper
+                    {...wrapperProps}
+                    className={`block relative rounded-[3rem] overflow-hidden shadow-premium aspect-[16/10] group ${hasLink ? 'cursor-pointer' : 'cursor-default'}`}
+                  >
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" referrerPolicy="no-referrer" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent flex flex-col justify-end p-10 lg:p-14 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                      <span className="text-brand-blue font-black text-[10px] uppercase tracking-[0.3em] mb-3">{item.category}</span>
+                      <h3 className="text-white text-2xl lg:text-3xl font-bold mb-5">{item.title}</h3>
+                      <div className="flex items-center gap-4">
+                        {hasLink ? (
+                          <span className="inline-flex items-center gap-2 px-6 py-3 bg-brand-blue hover:bg-white text-white hover:text-brand-dark rounded-xl font-bold text-xs tracking-widest uppercase shadow-glow hover:scale-105 active:scale-95 duration-300 transition-all">
+                            Live Demo
+                            <ExternalLink size={14} strokeWidth={2.5} />
+                          </span>
+                        ) : (
+                          <div className="flex items-center gap-2 text-white/60 text-xs font-black tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                            Discover Case Study <ArrowRight size={16} strokeWidth={3} />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </CardWrapper>
+                </motion.div>
+              );
+            })}
           </div>
           <div className="mt-20 text-center">
             <button onClick={() => setShowAllProjects(true)} className="bg-brand-dark hover:bg-brand-blue text-white px-12 py-5 rounded-2xl font-black tracking-widest text-sm transition-all inline-flex items-center gap-3 shadow-premium hover:shadow-glow">

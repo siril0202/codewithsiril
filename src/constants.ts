@@ -1,11 +1,11 @@
-import { 
-  Globe, 
-  ShoppingCart, 
-  Smartphone, 
-  Search, 
-  Palette, 
-  Megaphone, 
-  Settings, 
+import {
+  Globe,
+  ShoppingCart,
+  Smartphone,
+  Search,
+  Palette,
+  Megaphone,
+  Settings,
   Code2,
   CheckCircle2,
   Clock,
@@ -107,6 +107,36 @@ export const BENEFITS = [
 
 export const PORTFOLIO = [
   {
+    title: 'Elite Travels Platform',
+    category: 'Web Design',
+    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800',
+    link: 'https://travels.codewithsiril.site',
+  },
+  {
+    title: 'IronFlex Gym & Fitness',
+    category: 'Web Development',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=800',
+    link: 'https://gym.codewithsiril.site',
+  },
+  {
+    title: 'The Savory Bistro',
+    category: 'Web Design',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800',
+    link: 'https://restaurent.codewithsiril.site',
+  },
+  {
+    title: 'Apex Real Estate Agency',
+    category: 'Web Development',
+    image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=800',
+    link: 'https://realestate.codewithsiril.site',
+  },
+  {
+    title: 'Vortex Digital Agency',
+    category: 'Web Design',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+    link: 'https://digital.codewithsiril.site',
+  },
+  {
     title: 'Cloud POS System',
     category: 'POS & Inventory',
     image: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -116,12 +146,6 @@ export const PORTFOLIO = [
     title: 'Hostel Management System',
     category: 'Management Software',
     image: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    link: '#',
-  },
-  {
-    title: 'Elite Travels Platform',
-    category: 'Web Design',
-    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800',
     link: '#',
   },
   {
