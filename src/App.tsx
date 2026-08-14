@@ -53,7 +53,9 @@ You can choose to disable cookies through your browser settings; however, some f
 
   const handleNavigate = (to: string) => {
     if (to.startsWith('/')) {
-      if (window.location.pathname !== to) {
+      const targetPath = to.toLowerCase().replace(/\/+$/, '') || '/';
+      const currentNorm = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
+      if (currentNorm !== targetPath) {
         window.history.pushState({}, '', to);
         setCurrentPath(to);
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -63,8 +65,8 @@ You can choose to disable cookies through your browser settings; however, some f
     }
   };
 
-  const isMaduraiPage =
-    currentPath === '/web-development-madurai' || currentPath === '/web-development-madurai/';
+  const normalizedPath = currentPath.toLowerCase().replace(/\/+$/, '') || '/';
+  const isMaduraiPage = normalizedPath === '/web-development-madurai';
 
   return (
     <div className="bg-white min-h-screen font-sans selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
