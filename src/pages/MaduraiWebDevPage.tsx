@@ -259,7 +259,7 @@ export const MaduraiWebDevPage: React.FC<MaduraiWebDevPageProps> = ({ onOpenPort
       '@type': 'ProfessionalService',
       'name': 'CodeWithSiril - Web Development Company in Madurai',
       'url': 'https://www.codewithsiril.site/web-development-madurai',
-      'logo': 'https://www.codewithsiril.site/src/assets/images/logo.png',
+      'logo': 'https://www.codewithsiril.site/logo.png',
       'image': 'https://www.codewithsiril.site/og-banner.png',
       'telephone': '+919363021664',
       'email': 'santhanasiril0202@gmail.com',
